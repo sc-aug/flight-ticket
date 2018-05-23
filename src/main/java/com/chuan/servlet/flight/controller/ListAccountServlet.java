@@ -11,26 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/ListAccountServlet")
+public class ListAccountServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        System.out.println("List Account Servlet");
         String page = "";
         AccountService as = new AccountServiceImpl();
+        List<AccountBean> al = as.getAllAccounts();
 
-        boolean res = as.register(new AccountBean(-1, username, password, 2));
+        for (AccountBean a: al) {
+            System.out.println(a.getUsername());
+        }
 
-        if (res) {
-            // success
-            System.out.println("success");
-            page = "account/login.jsp";
+        if (al != null && al.size() != 0) {
+            page = "/admin/user-manage.jsp";
+            request.setAttribute("accountList", al);
         } else {
-            // failed
-            System.out.println("failed");
-            page = "account/register.jsp";
+            System.out.println("Empty");
+            page = "/admin/admin.jsp";
         }
 
         RequestDispatcher rd = request.getRequestDispatcher(page);

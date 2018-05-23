@@ -5,6 +5,8 @@
 </head>
 <body>
 
+Flight Ticket Booking System <br>
+
 Register
 
 <form action="RegisterServlet" method="post">
@@ -14,6 +16,9 @@ Register
     <input type="password" id="password" name="password">
     <input type="submit" value="Register">
 </form>
+
+<a href="login.jsp">Login</a>
+<a href="/index.html">Home</a>
 
 </body>
 </html>

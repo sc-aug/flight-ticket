@@ -15,9 +15,10 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        System.out.println(username + " " + password);
         String page = "";
         AccountService as = new AccountServiceImpl();
         AccountBean acc = as.login(new AccountBean(-1, username, password, -1));
@@ -25,14 +26,14 @@ public class LoginServlet extends HttpServlet {
             // success
             System.out.println("success");
             if (acc.getRoleId() == 1) {
-                page = "admin.jsp";
+                page = "/admin/admin.jsp";
             } else {
-                page = "user.jsp";
+                page = "/user/user.jsp";
             }
         } else {
             // failed
             System.out.println("failed");
-            page = "login.jsp";
+            page = "/account/login.jsp";
         }
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
