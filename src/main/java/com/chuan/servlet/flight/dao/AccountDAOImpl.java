@@ -49,13 +49,14 @@ public class AccountDAOImpl implements AccountDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int res = -1;
-        String query = "INSERT INTO account VALUES (DEFAULT, ?, ?, 2)";
+        String query = "INSERT INTO account VALUES (DEFAULT, ?, ?, ?)";
         try {
             con = DBUtil.getConnectionObject();
             ps = DBUtil.getPreparedStatement(con, query);
             ps = con.prepareStatement(query);
             ps.setString(1, acc.getUsername());
             ps.setString(2, acc.getPassword());
+            ps.setInt(3, acc.getRoleId());
             res = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

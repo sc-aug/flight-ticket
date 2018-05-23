@@ -7,11 +7,11 @@
 
 Register
 
-<form action="RegisterServlet" method="get">
+<form action="RegisterServlet" method="post">
     <label for="username">Username</label>
-    <input type="text" name="username">
+    <input type="text" id="username" name="username">
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" id="password" name="password">
     <input type="submit" value="Register">
 </form>
 

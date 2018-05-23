@@ -52,11 +52,11 @@ public class AccountBean {
         this.password = password;
     }
 
-    public int getRole() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRole(int role) {
+    public void setRoleId(int role) {
         this.roleId = role;
     }
 

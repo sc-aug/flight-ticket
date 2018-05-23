@@ -14,23 +14,17 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    protected void doPost(
-            HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        System.out.println(username + " " + password);
-
         String page = "";
         AccountService as = new AccountServiceImpl();
         AccountBean acc = as.login(new AccountBean(-1, username, password, -1));
         if (acc != null) {
             // success
             System.out.println("success");
-            if (acc.getRole() == 1) {
+            if (acc.getRoleId() == 1) {
                 page = "admin.jsp";
             } else {
                 page = "user.jsp";
@@ -43,4 +37,5 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }
+
 }

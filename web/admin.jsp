@@ -14,5 +14,11 @@
 
 admin page
 
+<ul>
+    <li>flight management</li>
+    <li>flight scheduling</li>
+    <li></li>
+</ul>
+
 </body>
 </html>
