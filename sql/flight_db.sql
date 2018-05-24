@@ -152,6 +152,11 @@ INSERT INTO seat_type VALUES (DEFAULT, 'First Class');
 INSERT INTO seat_type VALUES (DEFAULT, 'Business');
 INSERT INTO seat_type VALUES (DEFAULT, 'Economy');
 
+-- airplane seat
+INSERT INTO airplane_seat VALUES (1, 1, 20);
+INSERT INTO airplane_seat VALUES (1, 2, 30);
+INSERT INTO airplane_seat VALUES (1, 3, 80);
+
 -- city
 INSERT INTO city VALUES (DEFAULT, 'Shanghai',   'UTC+08:00');
 INSERT INTO city VALUES (DEFAULT, 'Chicago',    'UTC-05:00');
@@ -162,4 +167,3 @@ INSERT INTO city VALUES (DEFAULT, 'San Diago',  'UTC-07:00');
 
 -- flight
 INSERT INTO flight VALUES (DEFAULT, '2000-01-01 00:00:00', '2000-01-02 00:18:00', 1, 2, 3);
-
