@@ -34,19 +34,6 @@
             <version>5.1.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat-maven-plugin-it -->
-        <dependency>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat-maven-plugin-it</artifactId>
-            <version>2.2</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.3.0.Final</version>
-        </dependency>
 
     </dependencies>
 
