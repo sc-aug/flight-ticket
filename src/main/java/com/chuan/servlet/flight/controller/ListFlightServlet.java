@@ -21,13 +21,6 @@ public class ListFlightServlet extends HttpServlet {
         FlightService fs = new FlightServiceImpl();
         List<FlightBean> fl = fs.getAllFlights();
 
-        System.out.println("list flight servlet" + fl);
-
-//        for (FlightBean f: fl) {
-//            System.out.println(f);
-//        }
-
-        System.out.println("list flight servlet");
         if (fl != null && fl.size() != 0) {
             page = "/admin/flight-manage.jsp";
             request.setAttribute("flightList", fl);
@@ -35,7 +28,6 @@ public class ListFlightServlet extends HttpServlet {
             System.out.println("Empty");
             page = "/admin/admin.jsp";
         }
-        System.out.println("list flight servlet");
 
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
