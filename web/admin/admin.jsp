@@ -5,13 +5,19 @@
 </head>
 <body>
 
-admin page
+<h2>Admin Page</h2>
 
+<h3>Account</h3>
 <ul>
-    <li><a href="ListFlightServlet">flight management</a></li>
-    <li><a href="flight-schedule.jsp">flight scheduling</a></li>
-    <li><a href="user-manage.jsp">user management</a></li>
-    <li><a href="ListAccountServlet">user management</a></li>
+    <li><a href="ListAccountServlet">manage account / account list</a></li>
+</ul>
+
+<h3>Flight</h3>
+<ul>
+    <li><a href="">manage seat type / list</a></li>
+    <li><a href="">manage airplane / list</a></li>
+    <li><a href="ListFlightServlet">manage flight / list</a></li>
+    <li><a href="">manage schedule / list</a></li>
 </ul>
 
 </body>

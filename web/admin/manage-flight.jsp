@@ -1,6 +1,7 @@
 <%@ page import="com.chuan.servlet.flight.bean.FlightBean" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+        isELIgnored="true"%>
 <html>
 <head>
     <title>Admin - Flight Management</title>
@@ -9,17 +10,21 @@
 
 <h2>Admin - Flight Management</h2>
 
+<h3><a href="">Add a flight</a></h3>
+
 <%-- Get Accout List --%>
 <% List<FlightBean> flightList = (List<FlightBean>)request.getAttribute("flightList"); %>
 
 <table>
     <thead>
-    <th>Flight Id</th>
-    <th>Departure Time</th>
-    <th>Arrival Time</th>
-    <th>Departure City</th>
-    <th>Arrival City</th>
-    <th>Airplane</th>
+        <th>Flight Id</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Airplane</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </thead>
     <tbody>
 
@@ -33,7 +38,8 @@
         <td><%= f.getDepartureCity() %></td>
         <td><%= f.getArrivalCity() %></td>
         <td><%= f.getAirplaneName() %></td>
-
+        <td><a href="/EditFlightServlet?flight_id=<%= f.getFlightId() %>">edit</a></td>
+        <td><a href="/DeleteFlightServlet?flight_id=<%= f.getFlightId() %>">delete</a></td>
     </tr>
 
     <% } %>

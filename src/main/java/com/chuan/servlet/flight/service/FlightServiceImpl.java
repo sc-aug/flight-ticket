@@ -12,8 +12,8 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public boolean getFlightById(int fId) {
-        return false;
+    public FlightBean getFlightById(int fId) {
+        return new FlightDAOImpl().getFlightById(fId);
     }
 
     @Override

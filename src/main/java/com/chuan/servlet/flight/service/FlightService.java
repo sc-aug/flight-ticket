@@ -8,7 +8,7 @@ public interface FlightService {
     // add flight
     public boolean addFlight(FlightBean f);
     // get flight
-    public boolean getFlightById(int fId);
+    public FlightBean getFlightById(int fId);
     // get all flights
     public List<FlightBean> getAllFlights();
 }

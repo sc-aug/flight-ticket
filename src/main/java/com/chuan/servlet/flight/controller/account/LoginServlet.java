@@ -1,4 +1,4 @@
-package com.chuan.servlet.flight.controller;
+package com.chuan.servlet.flight.controller.account;
 
 import com.chuan.servlet.flight.bean.AccountBean;
 import com.chuan.servlet.flight.service.AccountService;
@@ -12,27 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/LoginServlet")
+public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        // System.out.println(username + " " + password);
         String page = "";
         AccountService as = new AccountServiceImpl();
-
-        boolean res = as.register(new AccountBean(-1, username, password, 2));
-
-        if (res) {
+        AccountBean acc = as.login(new AccountBean(-1, username, password, -1));
+        if (acc != null) {
             // success
-            System.out.println("success");
-            page = "account/login.jsp";
+            // System.out.println("success");
+            if (acc.getRoleId() == 1) {
+                page = "/admin/admin.jsp";
+            } else {
+                page = "/user/user.jsp";
+            }
         } else {
             // failed
-            System.out.println("failed");
-            page = "account/register.jsp";
+            // System.out.println("failed");
+            page = "/account/login.jsp";
         }
-
         RequestDispatcher rd = request.getRequestDispatcher(page);
         rd.forward(request, response);
     }

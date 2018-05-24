@@ -1,4 +1,4 @@
-package com.chuan.servlet.flight.controller;
+package com.chuan.servlet.flight.controller.account;
 
 import com.chuan.servlet.flight.bean.AccountBean;
 import com.chuan.servlet.flight.service.AccountService;
@@ -20,10 +20,6 @@ public class ListAccountServlet extends HttpServlet {
         String page = "";
         AccountService as = new AccountServiceImpl();
         List<AccountBean> al = as.getAllAccounts();
-
-        for (AccountBean a: al) {
-            System.out.println(a.getUsername());
-        }
 
         if (al != null && al.size() != 0) {
             page = "/admin/user-manage.jsp";

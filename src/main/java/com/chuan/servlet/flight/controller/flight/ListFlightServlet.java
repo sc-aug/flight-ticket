@@ -1,4 +1,4 @@
-package com.chuan.servlet.flight.controller;
+package com.chuan.servlet.flight.controller.flight;
 
 import com.chuan.servlet.flight.bean.FlightBean;
 import com.chuan.servlet.flight.service.FlightService;
@@ -22,7 +22,7 @@ public class ListFlightServlet extends HttpServlet {
         List<FlightBean> fl = fs.getAllFlights();
 
         if (fl != null && fl.size() != 0) {
-            page = "/admin/flight-manage.jsp";
+            page = "/admin/manage-flight.jsp";
             request.setAttribute("flightList", fl);
         } else {
             System.out.println("Empty");
