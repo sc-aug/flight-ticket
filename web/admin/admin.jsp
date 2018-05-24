@@ -8,7 +8,7 @@
 admin page
 
 <ul>
-    <li><a href="flight-manage.jsp">flight management</a></li>
+    <li><a href="ListFlightServlet">flight management</a></li>
     <li><a href="flight-schedule.jsp">flight scheduling</a></li>
     <li><a href="user-manage.jsp">user management</a></li>
     <li><a href="ListAccountServlet">user management</a></li>
