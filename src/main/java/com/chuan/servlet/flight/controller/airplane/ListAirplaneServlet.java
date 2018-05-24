@@ -21,8 +21,6 @@ public class ListAirplaneServlet extends HttpServlet {
         AirplaneService as = new AirplaneServiceImpl();
         List<AirplaneBean> al = as.getAllAirplanes();
 
-        System.out.println(al.size());
-
         if (al != null && al.size() != 0) {
             page = "/admin/manage-airplane.jsp";
             request.setAttribute("airplaneList", al);
