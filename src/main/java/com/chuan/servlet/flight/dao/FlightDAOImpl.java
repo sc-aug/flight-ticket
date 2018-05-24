@@ -48,8 +48,8 @@ public class FlightDAOImpl implements FlightDAO {
             while(rs.next()) {
                 fl.add(new FlightBean(
                         rs.getInt(1),
-                        rs.getTimestamp(2).toString(),
-                        rs.getTimestamp(2).toString(),
+                        rs.getTimestamp(2).toLocalDateTime(),
+                        rs.getTimestamp(3).toLocalDateTime(),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6)

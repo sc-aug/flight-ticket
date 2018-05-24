@@ -1,15 +1,17 @@
 package com.chuan.servlet.flight.bean;
 
+import java.time.LocalDateTime;
+
 public class FlightBean {
     private int flightId;
-    private String departureTime;
-    private String arrivalTime;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
     private String departureCity;
     private String arrivalCity;
     private String airplaneName;
 
 
-    public FlightBean(int flightId, String departureTime, String arrivalTime, String departureCity, String arrivalCity, String airplaneName) {
+    public FlightBean(int flightId, LocalDateTime departureTime, LocalDateTime arrivalTime, String departureCity, String arrivalCity, String airplaneName) {
         this.flightId = flightId;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -38,19 +40,19 @@ public class FlightBean {
         this.flightId = flightId;
     }
 
-    public String getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(String departureTime) {
+    public void setDepartureTime(LocalDateTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public String getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
