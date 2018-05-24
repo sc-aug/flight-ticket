@@ -14,7 +14,7 @@
 
 <h3>Flight</h3>
 <ul>
-    <li><a href="">manage seat type / list</a></li>
+    <li><a href="ListSeatTypeServlet">manage seat type / list</a></li>
     <li><a href="">manage airplane / list</a></li>
     <li><a href="ListFlightServlet">manage flight / list</a></li>
     <li><a href="">manage schedule / list</a></li>
