@@ -17,7 +17,6 @@ import java.util.List;
 public class ListAccountServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        System.out.println("List Account Servlet");
         String page = "";
         AccountService as = new AccountServiceImpl();
         List<AccountBean> al = as.getAllAccounts();
