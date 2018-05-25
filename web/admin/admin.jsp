@@ -14,6 +14,7 @@
 
 <h3>Flight</h3>
 <ul>
+    <li><a href="ListLocationServlet">manage location / list</a></li>
     <li><a href="ListAirplaneServlet">manage airplane / list</a></li>
     <li><a href="ListFlightServlet">manage flight / list</a></li>
     <li><a href="">manage schedule / list</a></li>
