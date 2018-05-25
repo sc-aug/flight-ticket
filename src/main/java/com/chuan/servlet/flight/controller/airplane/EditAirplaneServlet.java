@@ -37,7 +37,25 @@ public class EditAirplaneServlet extends HttpServlet {
 
     // for update airplane info
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("airplane_id") + " " + request.getParameter("airplane_name"));
+        String page = "/ListAirplaneServlet";
+
+        AirplaneBean airplane = new AirplaneBean(
+                Integer.parseInt(request.getParameter("airplane_id")),
+                request.getParameter("airplane_name"),
+                Integer.parseInt(request.getParameter("seat_first")),
+                Integer.parseInt(request.getParameter("seat_business")),
+                Integer.parseInt(request.getParameter("seat_economy")));
+        AirplaneService as = new AirplaneServiceImpl();
+
+        if (as.updateAirplane(airplane) > 0) {
+            // success
+            System.out.println("airplane update success");
+        } else {
+            // failed
+            System.out.println("airplane update failed");
+        }
+
+        response.sendRedirect(page);
     }
 
 }

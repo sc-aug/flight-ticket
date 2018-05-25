@@ -9,4 +9,6 @@ public interface AirplaneDAO {
     public List<AirplaneBean> getAllAirplanes();
     // get airplane by id
     public AirplaneBean getAirplaneById(int airplaneId);
+    // update airplane
+    public int updateAirplane(AirplaneBean airplane);
 }

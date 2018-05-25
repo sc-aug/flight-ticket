@@ -7,40 +7,21 @@
 </head>
 <body>
 
-    <h2>Airplane Edit</h2>
-
     <%-- get airplane by id --%>
     <% AirplaneBean airplane = (AirplaneBean)request.getAttribute("airplane"); %>
 
-    <h3>Airplane Info</h3>
-
-    <input type="hidden" value="<%= airplane.getAirplaneId()%>" name="airplane_id">
-
-    Airplane ID: <%= airplane.getAirplaneId()%> <br>
-    Airplane Name: <%= airplane.getAirplaneName()%> <br>
-
-    <hr>
+    <h2>Airplane Edit</h2>
 
     <form action="/EditAirplaneServlet" method="post">
 
-        <h3>Airplane Info Edit</h3>
-
+        Airplane ID: <%= airplane.getAirplaneId()%> <br>
         Airplane Name: <input type="text" value="<%= airplane.getAirplaneName()%>" name="airplane_name"> <br>
+        First Class <input type="text" value="<%= airplane.getSeatFirst() %>" name="seat_first"> <br>
+        Business <input type="text" value="<%= airplane.getSeatBusiness() %>" name="seat_business"> <br>
+        Economy <input type="text" value="<%= airplane.getSeatEconomy() %>" name="seat_economy"> <br>
 
+        <input type="hidden" value="<%= airplane.getAirplaneId()%>" name="airplane_id">
         <input type="submit" value="edit">
-
-        <h3>Airplane Seat Edit</h3>
-
-
-        <ul>
-            <% for (Map.Entry<Integer, Integer> e: airplane.getSeat().entrySet()) {%>
-
-            <li>
-                <%= e.getKey() + " " + e.getValue() %>
-            </li>
-
-            <% }%>
-        </ul>
 
     </form>
 

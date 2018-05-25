@@ -13,6 +13,34 @@ import java.util.List;
 public class AirplaneDAOImpl implements AirplaneDAO {
 
     @Override
+    public int updateAirplane(AirplaneBean airplane) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int res = -1;
+        String query = "UPDATE airplane SET " +
+                "airplane_name = ?," +
+                "seat_first = ?," +
+                "seat_business = ?," +
+                "seat_economy = ? " +
+                "WHERE airplane_id = ?";
+        try {
+            con = DBUtil.getConnectionObject();
+            ps = con.prepareStatement(query);
+            ps.setString(1, airplane.getAirplaneName());
+            ps.setInt(2, airplane.getSeatFirst());
+            ps.setInt(3, airplane.getSeatBusiness());
+            ps.setInt(4, airplane.getSeatEconomy());
+            ps.setInt(5, airplane.getAirplaneId());
+            res = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeDbResources(con, ps);
+        }
+        return res;
+    }
+
+    @Override
     public AirplaneBean getAirplaneById(int airplaneId) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -48,7 +76,7 @@ public class AirplaneDAOImpl implements AirplaneDAO {
         PreparedStatement ps = null;
         List<AirplaneBean> al = new ArrayList<AirplaneBean>();
         ResultSet rs = null;
-        String query = "SELECT * FROM airplane";
+        String query = "SELECT * FROM airplane ORDER BY airplane_id";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
