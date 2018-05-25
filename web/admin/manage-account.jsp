@@ -7,7 +7,9 @@
 </head>
 <body>
 
-<h2>Admin - User Management</h2>
+    <h2>Admin - User Management</h2>
+
+    <h3><a href="/AddAccountServlet">Add an Account</a></h3>
 
     <%-- Get Accout List --%>
     <% List<AccountBean> accountList = (List<AccountBean>)request.getAttribute("accountList"); %>
@@ -23,19 +25,19 @@
         </thead>
         <tbody>
 
-                <%-- Loop the account list --%>
-                <% for(AccountBean acc: accountList) { %>
+            <%-- Loop the account list --%>
+            <% for(AccountBean acc: accountList) { %>
 
-                <tr>
-                    <td><%= acc.getUId() %></td>
-                    <td><%= acc.getUsername() %></td>
-                    <td><%= acc.getPassword() %></td>
-                    <td><%= acc.getRoleId() %></td>
-                    <td><a href="/EditAccountServlet?uid=<%= acc.getUId() %>">edit</a></td>
-                    <td><a href="/DeleteAccountServlet?uid=<%= acc.getUId() %>">delete</a></td>
-                </tr>
+            <tr>
+                <td><%= acc.getUId() %></td>
+                <td><%= acc.getUsername() %></td>
+                <td><%= acc.getPassword() %></td>
+                <td><%= acc.getRoleId() %></td>
+                <td><a href="/EditAccountServlet?uid=<%= acc.getUId() %>">edit</a></td>
+                <td><a href="/DeleteAccountServlet?uid=<%= acc.getUId() %>">delete</a></td>
+            </tr>
 
-                <% } %>
+            <% } %>
 
         </tbody>
     </table>

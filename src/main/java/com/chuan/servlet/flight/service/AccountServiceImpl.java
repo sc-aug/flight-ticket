@@ -13,8 +13,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean register(AccountBean acc) {
-        return new AccountDAOImpl().addAccount(acc) != -1;
+    public int newAccount(AccountBean acc) {
+        return new AccountDAOImpl().addAccount(acc);
     }
 
     @Override

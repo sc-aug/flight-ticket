@@ -22,9 +22,9 @@ public class RegisterServlet extends HttpServlet {
         String page = "";
         AccountService as = new AccountServiceImpl();
 
-        boolean res = as.register(new AccountBean(-1, username, password, 2));
+        int res = as.newAccount(new AccountBean(-1, username, password, 2));
 
-        if (res) {
+        if (res > 0) {
             // success
             System.out.println("register success");
             page = "account/login.jsp";

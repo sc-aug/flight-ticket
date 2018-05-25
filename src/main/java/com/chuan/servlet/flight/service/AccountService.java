@@ -8,7 +8,7 @@ public interface AccountService {
     // login
     public AccountBean login(AccountBean acc);
     // register
-    public boolean register(AccountBean acc);
+    public int newAccount(AccountBean acc);
     // get all user
     public List<AccountBean> getAllAccounts();
     // delete account by id
