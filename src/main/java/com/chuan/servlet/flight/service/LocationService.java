@@ -9,6 +9,8 @@ public interface LocationService {
     public List<LocationBean> getAllLocations();
     // get location by id
     public LocationBean getLocationById(int locId);
+    // add location
+    public int addLocation(LocationBean loc);
     // edit location
     public int updateLocation(LocationBean loc);
     // delete location by id

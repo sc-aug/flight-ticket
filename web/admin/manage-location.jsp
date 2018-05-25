@@ -31,8 +31,8 @@
         <td><%= l.getLocationId() %></td>
         <td><%= l.getLocationName() %></td>
         <td><%= l.getTimezone() %></td>
-        <td><a href="/EditLocationServlet?airplane_id=<%= l.getLocationId() %>">edit</a></td>
-        <td><a href="/DeleteLocationServlet?airplane_id=<%= l.getLocationId() %>">delete</a></td>
+        <td><a href="/EditLocationServlet?location_id=<%= l.getLocationId() %>">edit</a></td>
+        <td><a href="/DeleteLocationServlet?location_id=<%= l.getLocationId() %>">delete</a></td>
     </tr>
 
     <% } %>

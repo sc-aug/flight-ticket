@@ -13,6 +13,26 @@ import java.util.List;
 public class LocationDAOImpl implements LocationDAO {
 
     @Override
+    public int addLocation(LocationBean loc) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int res = -1;
+        String query = "INSERT INTO location VALUES (DEFAULT, ?, ?)";
+        try {
+            con = DBUtil.getConnectionObject();
+            ps = con.prepareStatement(query);
+            ps.setString(1, loc.getLocationName());
+            ps.setString(2, loc.getTimezone());
+            res = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeDbResources(con, ps);
+        }
+        return res;
+    }
+
+    @Override
     public List<LocationBean> getAllLocations() {
         Connection con = null;
         PreparedStatement ps = null;

@@ -17,6 +17,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public int addLocation(LocationBean loc) {
+        return new LocationDAOImpl().addLocation(loc);
+    }
+
+    @Override
     public int updateLocation(LocationBean loc) {
         return new LocationDAOImpl().updateLocation(loc);
     }
