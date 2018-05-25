@@ -10,4 +10,9 @@ public class AirplaneServiceImpl implements AirplaneService {
     public List<AirplaneBean> getAllAirplanes() {
         return new AirplaneDAOImpl().getAllAirplanes();
     }
+
+    @Override
+    public AirplaneBean getAirplaneById(int airplaneId) {
+        return new AirplaneDAOImpl().getAirplaneById(airplaneId);
+    }
 }

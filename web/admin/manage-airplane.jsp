@@ -18,6 +18,9 @@
     <thead>
     <th>Airplane Id</th>
     <th>Airplane Name</th>
+    <th>First Class</th>
+    <th>Business</th>
+    <th>Economy</th>
     <th>Edit</th>
     <th>Delete</th>
     </thead>
@@ -29,6 +32,9 @@
     <tr>
         <td><%= a.getAirplaneId() %></td>
         <td><%= a.getAirplaneName() %></td>
+        <td><%= a.getSeatFirst() %></td>
+        <td><%= a.getSeatBusiness() %></td>
+        <td><%= a.getSeatEconomy() %></td>
         <td><a href="/EditAirplaneServlet?airplane_id=<%= a.getAirplaneId() %>">edit</a></td>
         <td><a href="/DeleteAirplaneServlet?airplane_id=<%= a.getAirplaneId() %>">delete</a></td>
     </tr>
