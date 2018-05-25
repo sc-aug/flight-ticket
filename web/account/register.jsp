@@ -5,11 +5,11 @@
 </head>
 <body>
 
-Flight Ticket Booking System <br>
+<h2>Flight Ticket Booking System</h2>
 
-Register
+<h3>Register</h3>
 
-<form action="RegisterServlet" method="post">
+<form action="/RegisterServlet" method="post">
     <label for="username">Username</label>
     <input type="text" id="username" name="username">
     <label for="password">Password</label>
