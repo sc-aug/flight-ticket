@@ -49,12 +49,12 @@ CREATE TABLE airplane (
     PRIMARY KEY (airplane_id)
 );
 
--- city
-CREATE TABLE city (
-    city_id SERIAL NOT NULL,
-    city_name VARCHAR(50) NOT NULL,
-    time_zone VARCHAR(50) NOT NULL,
-    PRIMARY KEY (city_id)
+-- location
+CREATE TABLE location (
+    location_id SERIAL NOT NULL,
+    location_name VARCHAR(50) NOT NULL,
+    timezone VARCHAR(50) NOT NULL,
+    PRIMARY KEY (location_id)
 );
 
 -- flight table - ok
@@ -62,12 +62,12 @@ CREATE TABLE flight (
     flight_id SERIAL NOT NULL,
     relative_departure_time TIMESTAMP NOT NULL,
     relative_arrival_time TIMESTAMP NOT NULL,
-    departure_city_id INT NOT NULL,
-    arrival_city_id INT NOT NULL,
+    departure_loc_id INT NOT NULL,
+    arrival_loc_id INT NOT NULL,
     airplane_id INT NOT NULL,
     FOREIGN KEY (airplane_id) REFERENCES airplane (airplane_id),
-    FOREIGN KEY (departure_city_id) REFERENCES city (city_id),
-    FOREIGN KEY (arrival_city_id) REFERENCES city (city_id),
+    FOREIGN KEY (departure_loc_id) REFERENCES location (location_id),
+    FOREIGN KEY (arrival_loc_id) REFERENCES location (location_id),
     PRIMARY KEY (flight_id)
 );
 
@@ -77,8 +77,8 @@ CREATE TABLE schedule (
     flight_id INT NOT NULL,
     departure_time TIMESTAMP NOT NULL,
     arrival_time TIMESTAMP NOT NULL,
-    departure_city VARCHAR(50) NOT NULL,
-    arrival_city VARCHAR(50) NOT NULL,
+    departure_loc VARCHAR(50) NOT NULL,
+    arrival_loc VARCHAR(50) NOT NULL,
     FOREIGN KEY (flight_id) REFERENCES flight (flight_id),
     PRIMARY KEY (schedule_id)
 );
@@ -133,12 +133,12 @@ INSERT INTO airplane VALUES (DEFAULT, 'Airbus A330', 15, 25, 70);
 INSERT INTO airplane VALUES (DEFAULT, 'Airbus A380', 20, 30, 80);
 
 -- city
-INSERT INTO city VALUES (DEFAULT, 'Shanghai',   'UTC+08:00');
-INSERT INTO city VALUES (DEFAULT, 'Chicago',    'UTC-05:00');
-INSERT INTO city VALUES (DEFAULT, 'New York',   'UTC-04:00');
-INSERT INTO city VALUES (DEFAULT, 'Tokyo',      'UTC+09:00');
-INSERT INTO city VALUES (DEFAULT, 'London',     'UTC+01:00');
-INSERT INTO city VALUES (DEFAULT, 'San Diago',  'UTC-07:00');
+INSERT INTO location VALUES (DEFAULT, 'Shanghai',   'UTC+08:00');
+INSERT INTO location VALUES (DEFAULT, 'Chicago',    'UTC-05:00');
+INSERT INTO location VALUES (DEFAULT, 'New York',   'UTC-04:00');
+INSERT INTO location VALUES (DEFAULT, 'Tokyo',      'UTC+09:00');
+INSERT INTO location VALUES (DEFAULT, 'London',     'UTC+01:00');
+INSERT INTO location VALUES (DEFAULT, 'San Diago',  'UTC-07:00');
 
 -- flight
 INSERT INTO flight VALUES (DEFAULT, '2000-01-01 00:00:00', '2000-01-02 00:18:00', 1, 2, 3);
