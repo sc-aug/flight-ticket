@@ -16,6 +16,6 @@ public interface AccountDAO {
 
     public List<AccountBean> getAllAccounts();
 
-    public AccountBean getAccountById(int accId);
+    public AccountBean getAccountById(int uId);
 
 }

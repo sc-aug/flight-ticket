@@ -11,4 +11,10 @@ public interface AccountService {
     public boolean register(AccountBean acc);
     // get all user
     public List<AccountBean> getAllAccounts();
+    // delete account by id
+    public int deleteAccountById(int uid);
+    // get account by id
+    public AccountBean getAccountById(int uid);
+    // update account
+    public int updateAccount(AccountBean acc);
 }

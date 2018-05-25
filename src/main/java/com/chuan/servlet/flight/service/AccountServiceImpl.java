@@ -22,4 +22,19 @@ public class AccountServiceImpl implements AccountService {
         return new AccountDAOImpl().getAllAccounts();
     }
 
+    @Override
+    public int deleteAccountById(int uid) {
+        return new AccountDAOImpl().deleteAccountById(uid);
+    }
+
+    @Override
+    public AccountBean getAccountById(int uId) {
+        return new AccountDAOImpl().getAccountById(uId);
+    }
+
+    @Override
+    public int updateAccount(AccountBean acc) {
+        return new AccountDAOImpl().updateAccount(acc);
+    }
+
 }

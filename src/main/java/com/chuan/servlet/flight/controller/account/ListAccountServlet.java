@@ -22,7 +22,7 @@ public class ListAccountServlet extends HttpServlet {
         List<AccountBean> al = as.getAllAccounts();
 
         if (al != null && al.size() != 0) {
-            page = "/admin/manage-user.jsp";
+            page = "/admin/manage-account.jsp";
             request.setAttribute("accountList", al);
         } else {
             System.out.println("Empty");

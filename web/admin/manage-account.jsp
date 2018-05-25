@@ -18,6 +18,8 @@
             <th>Username</th>
             <th>Password</th>
             <th>Role Id</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </thead>
         <tbody>
 
@@ -29,7 +31,8 @@
                     <td><%= acc.getUsername() %></td>
                     <td><%= acc.getPassword() %></td>
                     <td><%= acc.getRoleId() %></td>
-
+                    <td><a href="/EditAccountServlet?uid=<%= acc.getUId() %>">edit</a></td>
+                    <td><a href="/DeleteAccountServlet?uid=<%= acc.getUId() %>">delete</a></td>
                 </tr>
 
                 <% } %>

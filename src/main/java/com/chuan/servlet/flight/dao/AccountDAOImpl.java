@@ -92,14 +92,15 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement ps = null;
         int res = -1;
         String query = "UPDATE account SET " +
-                "username = ?, password = ? WHERE uid = ?";
+                "username = ?, password = ?, role_id = ? WHERE uid = ?";
         try {
             con = DBUtil.getConnectionObject();
             ps = DBUtil.getPreparedStatement(con, query);
             ps = con.prepareStatement(query);
             ps.setString(1, acc.getUsername());
             ps.setString(2, acc.getPassword());
-            ps.setInt(3, 1);
+            ps.setInt(3, acc.getRoleId());
+            ps.setInt(4, acc.getUId());
             res = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,7 +116,7 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement ps = null;
         List<AccountBean> al = new ArrayList<AccountBean>();
         ResultSet rs = null;
-        String query = "SELECT * FROM account";
+        String query = "SELECT * FROM account ORDER BY uid";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
@@ -136,7 +137,7 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
-    public AccountBean getAccountById(int accId) {
+    public AccountBean getAccountById(int uId) {
         Connection con = null;
         PreparedStatement ps = null;
         AccountBean acc = null;
@@ -145,7 +146,7 @@ public class AccountDAOImpl implements AccountDAO {
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
-            ps.setInt(1, accId);
+            ps.setInt(1, uId);
             rs = ps.executeQuery();
             if(rs.next()) {
                 acc = new AccountBean(
