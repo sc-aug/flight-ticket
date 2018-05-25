@@ -5,9 +5,9 @@
 </head>
 <body>
 
-Flight Ticket Booking System <br>
+<h2>Flight Ticket Booking System</h2>
 
-Login
+<h3>Login</h3>
 
 <form action="/LoginServlet" method="post">
     Username <input type="text" name="username">

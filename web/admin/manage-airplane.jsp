@@ -9,7 +9,7 @@
 
 <h2>Admin - Airplane Management</h2>
 
-<h3><a href="">Add a Airplane</a></h3>
+<h3><a href="/AddAirplaneServlet">Add a Airplane</a></h3>
 
 <%-- Get airplane list --%>
 <% List<AirplaneBean> airplaneList = (List<AirplaneBean>)request.getAttribute("airplaneList"); %>

@@ -18,4 +18,12 @@ public class AirplaneServiceImpl implements AirplaneService {
     public int updateAirplane(AirplaneBean airplane) {
         return new AirplaneDAOImpl().updateAirplane(airplane);
     }
+    @Override
+    public int addAirplane(AirplaneBean airplane) {
+        return new AirplaneDAOImpl().addAirplane(airplane);
+    }
+    @Override
+    public int deleteAirplaneById(int airplaneId) {
+        return new AirplaneDAOImpl().deleteAirplaneById(airplaneId);
+    }
 }

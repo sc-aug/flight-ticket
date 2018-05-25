@@ -11,4 +11,8 @@ public interface AirplaneDAO {
     public AirplaneBean getAirplaneById(int airplaneId);
     // update airplane
     public int updateAirplane(AirplaneBean airplane);
+    // add airplane
+    public int addAirplane(AirplaneBean airplane);
+    // delete airplane by id
+    public int deleteAirplaneById(int airplaneId);
 }

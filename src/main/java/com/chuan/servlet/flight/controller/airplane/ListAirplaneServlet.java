@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/ListAirplaneServlet")
+@WebServlet(name = "ListAirplaneServlet", urlPatterns = "/ListAirplaneServlet")
 public class ListAirplaneServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
