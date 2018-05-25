@@ -35,8 +35,8 @@
         <td><%= f.getFlightId() %></td>
         <td><%= f.getDepartureTime() %></td>
         <td><%= f.getArrivalTime() %></td>
-        <td><%= f.getDepartureCity() %></td>
-        <td><%= f.getArrivalCity() %></td>
+        <td><%= f.getDepartureLoc() %></td>
+        <td><%= f.getArrivalLoc() %></td>
         <td><%= f.getAirplaneName() %></td>
         <td><a href="/EditFlightServlet?flight_id=<%= f.getFlightId() %>">edit</a></td>
         <td><a href="/DeleteFlightServlet?flight_id=<%= f.getFlightId() %>">delete</a></td>

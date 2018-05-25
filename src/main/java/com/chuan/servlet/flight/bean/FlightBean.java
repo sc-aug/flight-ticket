@@ -6,24 +6,23 @@ public class FlightBean {
     private int flightId;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private int departureCityId;
-    private int arrivalCityId;
+    private int departureLocId;
+    private int arrivalLocId;
     private int airplaneId;
-    private String departureCity;
-    private String arrivalCity;
+    private String departureLoc;
+    private String arrivalLoc;
     private String airplaneName;
 
-    public FlightBean(int flightId, LocalDateTime departureTime, LocalDateTime arrivalTime,
-                      int departureCityId, int arrivalCityId, int airplaneId,
-                      String departureCity, String arrivalCity, String airplaneName) {
+    public FlightBean(int flightId, LocalDateTime dTime, LocalDateTime aTime, int dLocId, int aLocId,
+                      int airplaneId, String dLoc, String aLoc, String airplaneName) {
         this.flightId = flightId;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.departureCityId = departureCityId;
-        this.arrivalCityId = arrivalCityId;
+        this.departureTime = dTime;
+        this.arrivalTime = aTime;
+        this.departureLocId = dLocId;
+        this.arrivalLocId = aLocId;
         this.airplaneId = airplaneId;
-        this.departureCity = departureCity;
-        this.arrivalCity = arrivalCity;
+        this.departureLoc = dLoc;
+        this.arrivalLoc = aLoc;
         this.airplaneName = airplaneName;
     }
 
@@ -33,11 +32,11 @@ public class FlightBean {
                 "flightId=" + flightId +
                 ", departureTime=" + departureTime +
                 ", arrivalTime=" + arrivalTime +
-                ", departureCityId=" + departureCityId +
-                ", arrivalCityId=" + arrivalCityId +
+                ", departureLocId=" + departureLocId +
+                ", arrivalLocId=" + arrivalLocId +
                 ", airplaneId=" + airplaneId +
-                ", departureCity='" + departureCity + '\'' +
-                ", arrivalCity='" + arrivalCity + '\'' +
+                ", departureLoc='" + departureLoc + '\'' +
+                ", arrivalLoc='" + arrivalLoc + '\'' +
                 ", airplaneName='" + airplaneName + '\'' +
                 '}';
     }
@@ -66,20 +65,20 @@ public class FlightBean {
         this.arrivalTime = arrivalTime;
     }
 
-    public int getDepartureCityId() {
-        return departureCityId;
+    public int getDepartureLocId() {
+        return departureLocId;
     }
 
-    public void setDepartureCityId(int departureCityId) {
-        this.departureCityId = departureCityId;
+    public void setDepartureLocId(int departureLocId) {
+        this.departureLocId = departureLocId;
     }
 
-    public int getArrivalCityId() {
-        return arrivalCityId;
+    public int getArrivalLocId() {
+        return arrivalLocId;
     }
 
-    public void setArrivalCityId(int arrivalCityId) {
-        this.arrivalCityId = arrivalCityId;
+    public void setArrivalLocId(int arrivalLocId) {
+        this.arrivalLocId = arrivalLocId;
     }
 
     public int getAirplaneId() {
@@ -90,20 +89,20 @@ public class FlightBean {
         this.airplaneId = airplaneId;
     }
 
-    public String getDepartureCity() {
-        return departureCity;
+    public String getDepartureLoc() {
+        return departureLoc;
     }
 
-    public void setDepartureCity(String departureCity) {
-        this.departureCity = departureCity;
+    public void setDepartureLoc(String departureLoc) {
+        this.departureLoc = departureLoc;
     }
 
-    public String getArrivalCity() {
-        return arrivalCity;
+    public String getArrivalLoc() {
+        return arrivalLoc;
     }
 
-    public void setArrivalCity(String arrivalCity) {
-        this.arrivalCity = arrivalCity;
+    public void setArrivalLoc(String arrivalLoc) {
+        this.arrivalLoc = arrivalLoc;
     }
 
     public String getAirplaneName() {

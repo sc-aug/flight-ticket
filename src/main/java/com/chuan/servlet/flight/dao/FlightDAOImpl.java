@@ -26,19 +26,19 @@ public class FlightDAOImpl implements FlightDAO {
                 "    flight_id, " +
                 "    relative_departure_time, " +
                 "    relative_arrival_time, " +
-                "    c1.city_id, " +
-                "    c2.city_id, " +
+                "    l1.location_id, " +
+                "    l2.location_id, " +
                 "    a.airplane_id, " +
-                "    c1.city_name, " +
-                "    c2.city_name, " +
+                "    l1.location_name, " +
+                "    l2.location_name, " +
                 "    airplane_name " +
                 "FROM ( " +
                 "    SELECT * FROM flight " +
                 "    WHERE flight_id = 1) f " +
-                "LEFT JOIN city c1 " +
-                "ON f.departure_city_id = c1.city_id " +
-                "LEFT JOIN city c2 " +
-                "ON f.arrival_city_id = c2.city_id " +
+                "LEFT JOIN location l1 " +
+                "ON f.departure_loc_id = l1.location_id " +
+                "LEFT JOIN location l2 " +
+                "ON f.arrival_loc_id = l2.location_id " +
                 "LEFT JOIN airplane a " +
                 "ON f.airplane_id = a.airplane_id";
         try {
@@ -76,17 +76,17 @@ public class FlightDAOImpl implements FlightDAO {
                 "    flight_id, " +
                 "    relative_departure_time, " +
                 "    relative_arrival_time, " +
-                "    c1.city_id, " +
-                "    c2.city_id, " +
+                "    l1.location_id, " +
+                "    l2.location_id, " +
                 "    a.airplane_id, " +
-                "    c1.city_name, " +
-                "    c2.city_name, " +
+                "    l1.location_name, " +
+                "    l2.location_name, " +
                 "    airplane_name " +
                 "FROM flight f " +
-                "LEFT JOIN city c1 " +
-                "ON f.departure_city_id = c1.city_id " +
-                "LEFT JOIN city c2 " +
-                "ON f.arrival_city_id = c2.city_id " +
+                "LEFT JOIN location l1 " +
+                "ON f.departure_loc_id = l1.location_id " +
+                "LEFT JOIN location l2 " +
+                "ON f.arrival_loc_id = l2.location_id " +
                 "LEFT JOIN airplane a " +
                 "ON f.airplane_id = a.airplane_id";
         try {
