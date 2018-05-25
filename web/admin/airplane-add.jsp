@@ -15,7 +15,7 @@
     Economy <input type="text" value="" name="seat_economy"> <br>
 
     <input type="hidden" value="-1" name="airplane_id">
-    <input type="submit" value="edit">
+    <input type="submit" value="add">
 
 </form>
 
