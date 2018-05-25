@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/RegisterServlet")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         String page = "";
         AccountService as = new AccountServiceImpl();
 
@@ -25,11 +26,11 @@ public class RegisterServlet extends HttpServlet {
 
         if (res) {
             // success
-            System.out.println("success");
+            System.out.println("register success");
             page = "account/login.jsp";
         } else {
             // failed
-            System.out.println("failed");
+            System.out.println("register failed");
             page = "account/register.jsp";
         }
 
