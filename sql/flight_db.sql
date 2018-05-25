@@ -43,24 +43,10 @@ CREATE TABLE passenger (
 CREATE TABLE airplane (
     airplane_id SERIAL NOT NULL,
     airplane_name VARCHAR(50) NOT NULL,
+    seat_first INT NOT NULL,
+    seat_business INT NOT NULL,
+    seat_economy INT NOT NULL,
     PRIMARY KEY (airplane_id)
-);
-
--- seat type table - ok
-CREATE TABLE seat_type (
-    seat_type_id SERIAL NOT NULL,
-    seat_type_name VARCHAR(50) NOT NULL CHECK (LENGTH(seat_type_name) > 0),
-    PRIMARY KEY (seat_type_id)
-);
-
--- airplane seat table - ok
-CREATE TABLE airplane_seat (
-    airplane_id INT NOT NULL,
-    seat_type_id INT NOT NULL,
-    seat_num INT NOT NULL,
-    FOREIGN KEY (airplane_id) REFERENCES airplane (airplane_id),
-    FOREIGN KEY (seat_type_id) REFERENCES seat_type (seat_type_id),
-    PRIMARY KEY (airplane_id, seat_type_id)
 );
 
 -- city
@@ -99,12 +85,11 @@ CREATE TABLE schedule (
 
 -- reserved seats - ok
 CREATE TABLE reserved_seat (
-    schedule_id INT NOT NULL,
-    seat_type_id INT NOT NULL,
-    available_seat_num INT NOT NULL,
-    FOREIGN KEY (schedule_id) REFERENCES schedule (schedule_id),
-    FOREIGN KEY (seat_type_id) REFERENCES seat_type (seat_type_id),
-    PRIMARY KEY (schedule_id, seat_type_id)
+    schedule_id INT NOT NULL UNIQUE,
+    available_first INT NOT NULL,
+    available_business INT NOT NULL,
+    available_economy INT NOT NULL,
+    FOREIGN KEY (schedule_id) REFERENCES schedule (schedule_id)
 );
 
 -- price table - ok
@@ -137,25 +122,15 @@ INSERT INTO account VALUES (DEFAULT, 'demo', 'demo', 2);
 INSERT INTO account VALUES (DEFAULT, 'customer', 'customer', 2);
 
 -- airplane
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 707');
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 727');
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 757');
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 767');
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 777');
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 787');
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A320');
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A330');
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A380');
-
--- seat type
-INSERT INTO seat_type VALUES (DEFAULT, 'First Class');
-INSERT INTO seat_type VALUES (DEFAULT, 'Business');
-INSERT INTO seat_type VALUES (DEFAULT, 'Economy');
-
--- airplane seat
-INSERT INTO airplane_seat VALUES (1, 1, 20);
-INSERT INTO airplane_seat VALUES (1, 2, 30);
-INSERT INTO airplane_seat VALUES (1, 3, 80);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 707', 10, 20, 50);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 727', 15, 25, 70);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 757', 20, 20, 80);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 767', 20, 20, 60);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 777', 15, 20, 50);
+INSERT INTO airplane VALUES (DEFAULT, 'Boeing 787', 20, 30, 70);
+INSERT INTO airplane VALUES (DEFAULT, 'Airbus A320', 10, 20, 50);
+INSERT INTO airplane VALUES (DEFAULT, 'Airbus A330', 15, 25, 70);
+INSERT INTO airplane VALUES (DEFAULT, 'Airbus A380', 20, 30, 80);
 
 -- city
 INSERT INTO city VALUES (DEFAULT, 'Shanghai',   'UTC+08:00');
