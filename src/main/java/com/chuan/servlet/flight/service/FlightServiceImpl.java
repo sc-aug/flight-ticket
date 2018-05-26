@@ -25,4 +25,9 @@ public class FlightServiceImpl implements FlightService {
     public List<FlightBean> getAllFlights() {
         return new FlightDAOImpl().getAllFlights();
     }
+
+    @Override
+    public int deleteFlightById(int fId) {
+        return new FlightDAOImpl().deleteFlightById(fId);
+    }
 }

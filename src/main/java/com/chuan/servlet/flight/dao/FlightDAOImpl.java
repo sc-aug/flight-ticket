@@ -178,4 +178,25 @@ public class FlightDAOImpl implements FlightDAO {
         }
         return fl;
     }
+
+    @Override
+    public int deleteFlightById(int fId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        FlightBean flight = null;
+        int res = -1;
+        String query = "DELETE FROM flight WHERE flight_id = ?";
+        try {
+            con = DBUtil.getConnectionObject();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, fId);
+            // execute
+            res = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeDbResources(con, ps);
+        }
+        return res;
+    }
 }

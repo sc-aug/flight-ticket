@@ -13,4 +13,6 @@ public interface FlightService {
     public FlightBean getFlightById(int fId);
     // get all flights
     public List<FlightBean> getAllFlights();
+    // delete flight by id
+    public int deleteFlightById(int fId);
 }
