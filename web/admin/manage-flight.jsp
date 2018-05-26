@@ -1,5 +1,6 @@
 <%@ page import="com.chuan.servlet.flight.bean.FlightBean" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
         isELIgnored="true"%>
 <html>
@@ -10,7 +11,7 @@
 
 <h2>Admin - Flight Management</h2>
 
-<h3><a href="">Add a flight</a></h3>
+<h3><a href="/AddFlightServlet">Add a flight</a></h3>
 
 <%-- Get Accout List --%>
 <% List<FlightBean> flightList = (List<FlightBean>)request.getAttribute("flightList"); %>
@@ -28,13 +29,15 @@
     </thead>
     <tbody>
 
+    <%-- time format --%>
+    <% DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMdd HH:mm"); %>
     <%-- Loop the account list --%>
     <% for(FlightBean f: flightList) { %>
 
     <tr>
         <td><%= f.getFlightId() %></td>
-        <td><%= f.getDepartureTime() %></td>
-        <td><%= f.getArrivalTime() %></td>
+        <td><%= f.getDepartureTime().format(formatter) %></td>
+        <td><%= f.getArrivalTime().format(formatter) %></td>
         <td><%= f.getDepartureLoc() %></td>
         <td><%= f.getArrivalLoc() %></td>
         <td><%= f.getAirplaneName() %></td>

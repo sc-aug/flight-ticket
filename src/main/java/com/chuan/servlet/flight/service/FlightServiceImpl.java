@@ -7,8 +7,8 @@ import java.util.List;
 
 public class FlightServiceImpl implements FlightService {
     @Override
-    public boolean addFlight(FlightBean f) {
-        return false;
+    public int addFlight(FlightBean f) {
+        return new FlightDAOImpl().addFlight(f);
     }
 
     @Override

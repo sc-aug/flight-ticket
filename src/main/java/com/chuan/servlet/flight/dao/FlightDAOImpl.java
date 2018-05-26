@@ -7,13 +7,41 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightDAOImpl implements FlightDAO {
     @Override
-    public boolean addFlight(FlightBean f) {
-        return false;
+    public int addFlight(FlightBean f) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        FlightBean flight = null;
+        int res = -1;
+        String query = "INSERT INTO flight VALUES (DEFAULT, " +
+                "?::TIMESTAMP, " +
+                "?::TIMESTAMP, ?, ?, ?)";
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        String depT = f.getDepartureTime().format(formatter);
+        String arrT = f.getArrivalTime().format(formatter);
+
+        try {
+            con = DBUtil.getConnectionObject();
+            ps = con.prepareStatement(query);
+            ps.setString(1, depT);
+            ps.setString(2, arrT);
+            ps.setInt(3, f.getDepartureLocId());
+            ps.setInt(4, f.getArrivalLocId());
+            ps.setInt(5, f.getAirplaneId());
+            System.out.println(ps);
+            // execute
+            res = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.closeDbResources(con, ps);
+        }
+        return res;
     }
 
     @Override
