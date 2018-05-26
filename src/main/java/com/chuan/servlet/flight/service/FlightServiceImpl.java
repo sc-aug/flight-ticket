@@ -12,6 +12,11 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    public int editFlight(FlightBean f) {
+        return new FlightDAOImpl().editFlight(f);
+    }
+
+    @Override
     public FlightBean getFlightById(int fId) {
         return new FlightDAOImpl().getFlightById(fId);
     }
