@@ -85,25 +85,7 @@ public class FlightDAOImpl implements FlightDAO {
         PreparedStatement ps = null;
         FlightBean flight = null;
         ResultSet rs = null;
-        String query = "SELECT " +
-                "    flight_id, " +
-                "    relative_departure_time, " +
-                "    relative_arrival_time, " +
-                "    l1.location_id, " +
-                "    l2.location_id, " +
-                "    a.airplane_id, " +
-                "    l1.location_name, " +
-                "    l2.location_name, " +
-                "    airplane_name " +
-                "FROM ( " +
-                "    SELECT * FROM flight " +
-                "    WHERE flight_id = ?) f " +
-                "LEFT JOIN location l1 " +
-                "ON f.departure_loc_id = l1.location_id " +
-                "LEFT JOIN location l2 " +
-                "ON f.arrival_loc_id = l2.location_id " +
-                "LEFT JOIN airplane a " +
-                "ON f.airplane_id = a.airplane_id";
+        String query = "SELECT * FROM view_flight_detail WHERE flight_id = ?";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
@@ -112,15 +94,14 @@ public class FlightDAOImpl implements FlightDAO {
             if(rs.next()) {
                 flight = new FlightBean(
                         rs.getInt(1),
-                        rs.getTimestamp(2).toLocalDateTime(),
-                        rs.getTimestamp(3).toLocalDateTime(),
-                        rs.getInt(4),
-                        rs.getInt(5),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(),
                         rs.getInt(6),
-                        rs.getString(7),
+                        rs.getInt(7),
                         rs.getString(8),
-                        rs.getString(9)
-                );
+                        rs.getString(9));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,24 +117,7 @@ public class FlightDAOImpl implements FlightDAO {
         PreparedStatement ps = null;
         List<FlightBean> fl = new ArrayList<FlightBean>();
         ResultSet rs = null;
-        String query = "SELECT " +
-                "    flight_id, " +
-                "    relative_departure_time, " +
-                "    relative_arrival_time, " +
-                "    l1.location_id, " +
-                "    l2.location_id, " +
-                "    a.airplane_id, " +
-                "    l1.location_name, " +
-                "    l2.location_name, " +
-                "    airplane_name " +
-                "FROM flight f " +
-                "LEFT JOIN location l1 " +
-                "ON f.departure_loc_id = l1.location_id " +
-                "LEFT JOIN location l2 " +
-                "ON f.arrival_loc_id = l2.location_id " +
-                "LEFT JOIN airplane a " +
-                "ON f.airplane_id = a.airplane_id " +
-                "ORDER BY flight_id";
+        String query = "SELECT * FROM view_flight_detail";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
@@ -161,15 +125,14 @@ public class FlightDAOImpl implements FlightDAO {
             while(rs.next()) {
                 fl.add(new FlightBean(
                         rs.getInt(1),
-                        rs.getTimestamp(2).toLocalDateTime(),
-                        rs.getTimestamp(3).toLocalDateTime(),
-                        rs.getInt(4),
-                        rs.getInt(5),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(),
                         rs.getInt(6),
-                        rs.getString(7),
+                        rs.getInt(7),
                         rs.getString(8),
-                        rs.getString(9)
-                ));
+                        rs.getString(9)));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -59,8 +59,8 @@ public class EditFlightServlet extends HttpServlet {
         LocalDateTime depT = LocalDateTime.of(2000, 1, 5, depTimeHour, depTimeMin, 0);
         LocalDateTime arrT = LocalDateTime.of(2000, 1, 5 + dayChange, arrTimeHour, arrTimeMin, 0);
 
-        FlightBean updatedFlight = new FlightBean(flightId, depT, arrT,
-                departureLocId, arrivalLocId, airplaneId, "", "","");
+        FlightBean updatedFlight = new FlightBean(flightId, airplaneId, "", depT, arrT,
+                departureLocId, arrivalLocId, "", "");
 
         FlightService fs = new FlightServiceImpl();
         int res = fs.editFlight(updatedFlight);

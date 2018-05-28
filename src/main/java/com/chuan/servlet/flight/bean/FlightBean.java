@@ -4,40 +4,40 @@ import java.time.LocalDateTime;
 
 public class FlightBean {
     private int flightId;
+    private int airplaneId;
+    private String airplaneName;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private int departureLocId;
     private int arrivalLocId;
-    private int airplaneId;
     private String departureLoc;
     private String arrivalLoc;
-    private String airplaneName;
 
-    public FlightBean(int flightId, LocalDateTime dTime, LocalDateTime aTime, int dLocId, int aLocId,
-                      int airplaneId, String dLoc, String aLoc, String airplaneName) {
+    public FlightBean(int flightId, int airplaneId, String airplaneName, LocalDateTime departureTime, LocalDateTime arrivalTime,
+                      int departureLocId, int arrivalLocId, String departureLoc, String arrivalLoc) {
         this.flightId = flightId;
-        this.departureTime = dTime;
-        this.arrivalTime = aTime;
-        this.departureLocId = dLocId;
-        this.arrivalLocId = aLocId;
         this.airplaneId = airplaneId;
-        this.departureLoc = dLoc;
-        this.arrivalLoc = aLoc;
         this.airplaneName = airplaneName;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.departureLocId = departureLocId;
+        this.arrivalLocId = arrivalLocId;
+        this.departureLoc = departureLoc;
+        this.arrivalLoc = arrivalLoc;
     }
 
     @Override
     public String toString() {
         return "FlightBean{" +
                 "flightId=" + flightId +
+                ", airplaneId=" + airplaneId +
+                ", airplaneName='" + airplaneName + '\'' +
                 ", departureTime=" + departureTime +
                 ", arrivalTime=" + arrivalTime +
                 ", departureLocId=" + departureLocId +
                 ", arrivalLocId=" + arrivalLocId +
-                ", airplaneId=" + airplaneId +
                 ", departureLoc='" + departureLoc + '\'' +
                 ", arrivalLoc='" + arrivalLoc + '\'' +
-                ", airplaneName='" + airplaneName + '\'' +
                 '}';
     }
 
@@ -47,6 +47,22 @@ public class FlightBean {
 
     public void setFlightId(int flightId) {
         this.flightId = flightId;
+    }
+
+    public int getAirplaneId() {
+        return airplaneId;
+    }
+
+    public void setAirplaneId(int airplaneId) {
+        this.airplaneId = airplaneId;
+    }
+
+    public String getAirplaneName() {
+        return airplaneName;
+    }
+
+    public void setAirplaneName(String airplaneName) {
+        this.airplaneName = airplaneName;
     }
 
     public LocalDateTime getDepartureTime() {
@@ -81,14 +97,6 @@ public class FlightBean {
         this.arrivalLocId = arrivalLocId;
     }
 
-    public int getAirplaneId() {
-        return airplaneId;
-    }
-
-    public void setAirplaneId(int airplaneId) {
-        this.airplaneId = airplaneId;
-    }
-
     public String getDepartureLoc() {
         return departureLoc;
     }
@@ -103,13 +111,5 @@ public class FlightBean {
 
     public void setArrivalLoc(String arrivalLoc) {
         this.arrivalLoc = arrivalLoc;
-    }
-
-    public String getAirplaneName() {
-        return airplaneName;
-    }
-
-    public void setAirplaneName(String airplaneName) {
-        this.airplaneName = airplaneName;
     }
 }

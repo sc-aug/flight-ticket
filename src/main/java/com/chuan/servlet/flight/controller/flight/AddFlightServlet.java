@@ -49,8 +49,8 @@ public class AddFlightServlet extends HttpServlet {
         LocalDateTime arrT = LocalDateTime.of(2000, 1, 5 + dayChange, arrTimeHour, arrTimeMin, 0);
 
         FlightService fs = new FlightServiceImpl();
-        int res = fs.addFlight(new FlightBean(-1, depT, arrT,
-                departureLocId, arrivalLocId, airplaneId, "", "",""));
+        int res = fs.addFlight(new FlightBean(-1, airplaneId, "", depT, arrT,
+                departureLocId, arrivalLocId, "",""));
 
         String page = "/ListFlightServlet";
         response.sendRedirect(page);
