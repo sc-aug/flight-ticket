@@ -72,14 +72,14 @@
         int dayChange = flight.getArrivalTime().getDayOfMonth() - flight.getDepartureTime().getDayOfMonth();
     %>
 
-    Departure Time format: 14:20 <br>
-    <input type="text" name="dep_time"
-           value="<%= flight.getDepartureTime().format(formatter).substring(11,16)%>"> <br>
+    Departure Time. <br>
+    <input type="text" name="dep_time" pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"
+           value="<%= flight.getDepartureTime().format(formatter).substring(11, 16) %>"> <br>
 
-    Arrival Time: 14:20 <br>
-    <input type="text" name="arr_time"
-           value="<%= flight.getArrivalTime().format(formatter).substring(11,16)%>"> <br>
-
+    Arrival Time. <br>
+    <input type="text" name="arr_time" pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"
+           value="<%= flight.getArrivalTime().format(formatter).substring(11, 16) %>"> <br>
+    Time Format: [pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"] <br>
     <select name="day_change">
 
         <% for (int n = -2; n <= 2; n ++) { %>

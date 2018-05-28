@@ -63,10 +63,12 @@
     <br>
 
     Departure Time format: 14:20 <br>
-    <input type="text" name="dep_time"> <br>
+    <input type="text" name="dep_time" pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"> <br>
 
     Arrival Time: 14:20 <br>
-    <input type="text" name="arr_time">
+    <input type="text" name="arr_time" pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"> <br>
+
+    Time Format: [pattern="([1]?[0-9]|2[0-3]):[0-5][0-9]"] <br>
 
     <select name="day_change">
         <option value="-2">back 2 days</option>
