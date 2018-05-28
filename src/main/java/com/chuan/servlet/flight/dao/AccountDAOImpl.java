@@ -18,7 +18,7 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         AccountBean retAcc = null;
-        String query = "SELECT * FROM account " +
+        String query = "SELECT * FROM view_account_info " +
                 "WHERE username = ? AND password = ?";
         try {
             con = DBUtil.getConnectionObject();
@@ -33,8 +33,8 @@ public class AccountDAOImpl implements AccountDAO {
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(4)
-                );
+                        rs.getInt(4),
+                        rs.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,7 +116,7 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement ps = null;
         List<AccountBean> al = new ArrayList<AccountBean>();
         ResultSet rs = null;
-        String query = "SELECT * FROM account ORDER BY uid";
+        String query = "SELECT * FROM view_account_info ORDER BY uid";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
@@ -126,7 +126,8 @@ public class AccountDAOImpl implements AccountDAO {
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(4)));
+                        rs.getInt(4),
+                        rs.getString(5)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,7 +143,7 @@ public class AccountDAOImpl implements AccountDAO {
         PreparedStatement ps = null;
         AccountBean acc = null;
         ResultSet rs = null;
-        String query = "SELECT * FROM account WHERE uid = ?";
+        String query = "SELECT * FROM view_account_info WHERE uid = ?";
         try {
             con = DBUtil.getConnectionObject();
             ps = con.prepareStatement(query);
@@ -153,7 +154,8 @@ public class AccountDAOImpl implements AccountDAO {
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getInt(4));
+                        rs.getInt(4),
+                        rs.getString(5));
             }
         } catch (SQLException e) {
             e.printStackTrace();

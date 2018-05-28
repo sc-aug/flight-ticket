@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
         // System.out.println(username + " " + password);
         String page = "";
         AccountService as = new AccountServiceImpl();
-        AccountBean acc = as.login(new AccountBean(-1, username, password, -1));
+        AccountBean acc = as.login(new AccountBean(-1, username, password, -1, ""));
         if (acc != null) {
             // success
             // System.out.println("success");

@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
         String page = "";
         AccountService as = new AccountServiceImpl();
 
-        int res = as.newAccount(new AccountBean(-1, username, password, 2));
+        int res = as.newAccount(new AccountBean(-1, username, password, 2, ""));
 
         if (res > 0) {
             // success

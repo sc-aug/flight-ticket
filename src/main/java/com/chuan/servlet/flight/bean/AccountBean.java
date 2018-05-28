@@ -5,20 +5,13 @@ public class AccountBean {
     private String username;
     private String password;
     private int roleId;
+    private String roleName;
 
-    public AccountBean() {
-
-    }
+    public AccountBean() { }
 
     public AccountBean(String u, String p) {
         username = u;
         password = p;
-    }
-
-    public AccountBean(String u, String p, int r) {
-        username = u;
-        password = p;
-        roleId = r;
     }
 
     public AccountBean(int i, String u, String p, int r) {
@@ -26,6 +19,14 @@ public class AccountBean {
         username = u;
         password = p;
         roleId = r;
+    }
+
+    public AccountBean(int i, String u, String p, int r, String rn) {
+        uId = i;
+        username = u;
+        password = p;
+        roleId = r;
+        roleName = rn;
     }
 
     public int getUId() {
@@ -56,8 +57,15 @@ public class AccountBean {
         return roleId;
     }
 
-    public void setRoleId(int role) {
-        this.roleId = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }
