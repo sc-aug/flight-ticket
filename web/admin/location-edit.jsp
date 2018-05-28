@@ -23,5 +23,9 @@
 
 </form>
 
+<hr>
+
+<a href="https://time.is/UTC" target="_blank">Check UTC Timezone</a>
+
 </body>
 </html>
