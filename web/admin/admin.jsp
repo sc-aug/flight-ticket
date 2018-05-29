@@ -9,7 +9,8 @@
 
 <h3>Account</h3>
 <ul>
-    <li><a href="ListAccountServlet">manage account / account list</a></li>
+    <li><a href="ListRoleServlet">manage role / list</a></li>
+    <li><a href="ListAccountServlet">manage account / list</a></li>
 </ul>
 
 <h3>Flight</h3>
