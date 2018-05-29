@@ -6,7 +6,11 @@ public class ScheduleBean {
     // main data
     private int scheduleId;
     private int flightId;
-    private int status; // status 0 pending / 1 publish / 2 freeze
+    private int statusId; // status 1 pending / 2 publish / 3 freeze
+    private String statusName;
+    private String airplaneName;
+    private String depLocName;
+    private String arrLocName;
     private LocalDateTime departureTime;
     // query/calculate data, can be ignored
     private LocalDateTime arrivalTime;
@@ -14,16 +18,24 @@ public class ScheduleBean {
     private int availableSeatsBusiness;
     private int availableSeatsEconomy;
 
-    public ScheduleBean(int scheduleId, int flightId, int status, LocalDateTime departureTime) {
+    public ScheduleBean(int scheduleId, int flightId, int statusId, LocalDateTime departureTime) {
         this.scheduleId = scheduleId;
         this.flightId = flightId;
-        this.status = status;
+        this.statusId = statusId;
         this.departureTime = departureTime;
     }
 
-    public ScheduleBean(int scheduleId, int flightId, LocalDateTime departureTime, LocalDateTime arrivalTime, int availableSeatsFirst, int availableSeatsBusiness, int availableSeatsEconomy) {
+    public ScheduleBean(int scheduleId, int flightId, int statusId, String statusName,
+                        String airplaneName, String depLocName, String arrLocName,
+                        LocalDateTime departureTime, LocalDateTime arrivalTime,
+                        int availableSeatsFirst, int availableSeatsBusiness, int availableSeatsEconomy) {
         this.scheduleId = scheduleId;
         this.flightId = flightId;
+        this.statusId = statusId;
+        this.statusName = statusName;
+        this.airplaneName = airplaneName;
+        this.depLocName = depLocName;
+        this.arrLocName = arrLocName;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.availableSeatsFirst = availableSeatsFirst;
@@ -47,12 +59,44 @@ public class ScheduleBean {
         this.flightId = flightId;
     }
 
-    public int getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getAirplaneName() {
+        return airplaneName;
+    }
+
+    public void setAirplaneName(String airplaneName) {
+        this.airplaneName = airplaneName;
+    }
+
+    public String getDepLocName() {
+        return depLocName;
+    }
+
+    public void setDepLocName(String depLocName) {
+        this.depLocName = depLocName;
+    }
+
+    public String getArrLocName() {
+        return arrLocName;
+    }
+
+    public void setArrLocName(String arrLocName) {
+        this.arrLocName = arrLocName;
     }
 
     public LocalDateTime getDepartureTime() {

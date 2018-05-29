@@ -13,8 +13,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public ScheduleBean getScheduleById() {
-        return new ScheduleDAOImpl().getScheduleById();
+    public ScheduleBean getScheduleById(int sId) {
+        return new ScheduleDAOImpl().getScheduleById(sId);
     }
 
     @Override

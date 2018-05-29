@@ -20,26 +20,36 @@
 <table>
     <thead>
     <th>Schedule Id</th>
-    <th>Flight Id</th>
     <th>Status</th>
+    <th>Flight Id</th>
+    <th>Airplane Name</th>
     <th>Departure Time</th>
+    <th>Arrival Time</th>
+    <th>First Class</th>
+    <th>Business</th>
+    <th>Economy</th>
     <th>Edit</th>
     <th>Delete</th>
     </thead>
     <tbody>
 
     <%-- time format --%>
-    <% DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMdd HH:mm"); %>
+    <% DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm"); %>
     <%-- Loop the account list --%>
     <% for(ScheduleBean s: scheduleList) { %>
 
     <tr>
         <td><%= s.getScheduleId() %></td>
+        <td><%= s.getStatusName() %></td>
         <td><%= s.getFlightId() %></td>
-        <td><%= s.getStatus() %></td>
+        <td><%= s.getAirplaneName() %></td>
         <td><%= s.getDepartureTime().format(formatter) %></td>
-        <td><a href="/EditFlightServlet?flight_id=<%= s.getScheduleId() %>">edit</a></td>
-        <td><a href="/DeleteFlightServlet?flight_id=<%= s.getScheduleId() %>">delete</a></td>
+        <td><%= s.getArrivalTime().format(formatter) %></td>
+        <td><%= s.getAvailableSeatsFirst() %></td>
+        <td><%= s.getAvailableSeatsBusiness()%></td>
+        <td><%= s.getAvailableSeatsEconomy() %></td>
+        <td><a href="/EditFlightServlet?schedule_id=<%= s.getScheduleId() %>">edit</a></td>
+        <td><a href="/DeleteFlightServlet?schedule_id=<%= s.getScheduleId() %>">delete</a></td>
     </tr>
 
     <% } %>

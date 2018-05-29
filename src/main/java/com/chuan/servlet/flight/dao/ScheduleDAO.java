@@ -8,7 +8,7 @@ public interface ScheduleDAO {
     // get all schedules
     public List<ScheduleBean> getAllSchedules();
     // get schedule by id
-    public ScheduleBean getScheduleById();
+    public ScheduleBean getScheduleById(int sId);
     // add schedule
     public int addSchedule(ScheduleBean s);
     // update schedule

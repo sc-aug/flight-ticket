@@ -41,7 +41,7 @@ public class AddScheduleServlet extends HttpServlet {
 
 //        System.out.println(dTime);
 
-        ScheduleBean airplane = new ScheduleBean(-1, fId, 0, dTime);
+        ScheduleBean airplane = new ScheduleBean(-1, fId, 1, dTime);
         ScheduleService ss = new ScheduleServiceImpl();
 
         if (ss.addSchedule(airplane) > 0) {
