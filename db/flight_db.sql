@@ -4,6 +4,8 @@ CREATE DATABASE flight_db;
 
 \connect flight_db
 
+------- CREATE TABLES -------
+
 -- role table - ok
 CREATE TABLE role (
     role_id SERIAL NOT NULL,
@@ -49,7 +51,7 @@ CREATE TABLE airplane (
     PRIMARY KEY (airplane_id)
 );
 
--- location
+-- location - ok
 CREATE TABLE location (
     location_id SERIAL NOT NULL,
     location_name VARCHAR(50) NOT NULL,
@@ -71,25 +73,40 @@ CREATE TABLE flight (
     PRIMARY KEY (flight_id)
 );
 
+-- status table - ok
+CREATE TABLE status (
+    status_id SERIAL,
+    status_name VARCHAR(20),
+    PRIMARY KEY (status_id)
+);
+
 -- schedule of flight table - ok
 CREATE TABLE schedule (
     schedule_id SERIAL NOT NULL,
     flight_id INT NOT NULL,
+    status_id INT NOT NULL,
     departure_time TIMESTAMP NOT NULL,
-    arrival_time TIMESTAMP NOT NULL,
-    departure_loc VARCHAR(50) NOT NULL,
-    arrival_loc VARCHAR(50) NOT NULL,
     FOREIGN KEY (flight_id) REFERENCES flight (flight_id),
+    FOREIGN KEY (status_id) REFERENCES status (status_id),
     PRIMARY KEY (schedule_id)
 );
 
 -- reserved seats - ok
-CREATE TABLE reserved_seat (
+CREATE TABLE schedule_seat (
     schedule_id INT NOT NULL UNIQUE,
     available_first INT NOT NULL,
     available_business INT NOT NULL,
     available_economy INT NOT NULL,
     FOREIGN KEY (schedule_id) REFERENCES schedule (schedule_id)
+);
+
+-- seat table - ok
+CREATE TABLE available_seat (
+    schedule_id INT NOT NULL UNIQUE,
+    seat_class INT NOT NULL,
+    seat_num INT NOT NULL,
+    FOREIGN KEY (schedule_id) REFERENCES schedule (schedule_id),
+    PRIMARY KEY (schedule_id, seat_class, seat_num)
 );
 
 -- price table - ok
@@ -112,33 +129,93 @@ CREATE TABLE booking (
     PRIMARY KEY (booking_id)
 );
 
--- role
-INSERT INTO role VALUES (DEFAULT, 'admin');
-INSERT INTO role VALUES (DEFAULT, 'customer');
+------- CREATE VIEWS -------
 
--- account
-INSERT INTO account VALUES (DEFAULT, 'admin', 'admin', 1);
-INSERT INTO account VALUES (DEFAULT, 'demo', 'demo', 2);
-INSERT INTO account VALUES (DEFAULT, 'customer', 'customer', 2);
+CREATE VIEW view_flight_detail AS
+    SELECT
+        flight_id,
+        a.airplane_id airplane_id,
+        airplane_name,
+        relative_departure_time departure_time,
+        relative_arrival_time arrival_time,
+        l1.location_id loc_dep_id,
+        l2.location_id loc_arr_id,
+        l1.location_name loc_dep_name,
+        l2.location_name loc_arr_name
+    FROM flight f
+    LEFT JOIN location l1
+    ON f.departure_loc_id = l1.location_id
+    LEFT JOIN location l2
+    ON f.arrival_loc_id = l2.location_id
+    LEFT JOIN airplane a
+    ON f.airplane_id = a.airplane_id
+    ORDER BY flight_id;
 
--- airplane
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 707', 10, 20, 50);
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 727', 15, 25, 70);
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 757', 20, 20, 80);
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 767', 20, 20, 60);
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 777', 15, 20, 50);
-INSERT INTO airplane VALUES (DEFAULT, 'Boeing 787', 20, 30, 70);
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A320', 10, 20, 50);
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A330', 15, 25, 70);
-INSERT INTO airplane VALUES (DEFAULT, 'Airbus A380', 20, 30, 80);
+CREATE VIEW view_account_info AS
+    SELECT
+        uid,
+        username,
+        password,
+        a.role_id role_id,
+        role_name
+    FROM account a
+    LEFT JOIN role r
+    ON a.role_id = r.role_id;
 
--- city
-INSERT INTO location VALUES (DEFAULT, 'Shanghai',   'UTC+08:00');
-INSERT INTO location VALUES (DEFAULT, 'Chicago',    'UTC-05:00');
-INSERT INTO location VALUES (DEFAULT, 'New York',   'UTC-04:00');
-INSERT INTO location VALUES (DEFAULT, 'Tokyo',      'UTC+09:00');
-INSERT INTO location VALUES (DEFAULT, 'London',     'UTC+01:00');
-INSERT INTO location VALUES (DEFAULT, 'San Diago',  'UTC-07:00');
+CREATE VIEW view_schedule_info AS
+    SELECT
+        sc.schedule_id,
+        sc.flight_id,
+        sc.status_id,
+        status_name,
+        airplane_name,
+        l1.location_name dep_loc_name,
+        l2.location_name arr_loc_name,
+        seat_first,
+        seat_business,
+        seat_economy,
+        departure_time,
+        relative_departure_time,
+        relative_arrival_time
+    FROM schedule sc
+    INNER JOIN status
+    ON sc.status_id = status.status_id
+    LEFT JOIN schedule_seat scs
+    ON sc.schedule_id = scs.schedule_id
+    INNER JOIN flight f
+    ON sc.flight_id = f.flight_id
+    INNER JOIN airplane a
+    ON f.airplane_id = a.airplane_id
+    INNER JOIN location l1
+    ON f.departure_loc_id = l1.location_id
+    INNER JOIN location l2
+    ON f.arrival_loc_id = l2.location_id;
 
--- flight
-INSERT INTO flight VALUES (DEFAULT, '2000-01-01T00:00:00'::TIMESTAMP, '2000-01-02T00:18:00'::TIMESTAMP, 1, 2, 3);
+------- FUNCTION -------
+
+CREATE OR REPLACE FUNCTION fn_insert_schedule(f_id INT, dep TIMESTAMP) RETURNS INT AS $$
+DECLARE
+    inserted_s_id INT := 0 ;
+BEGIN
+
+    WITH s_ids AS (
+        INSERT INTO schedule VALUES
+            (DEFAULT, f_id, 1, dep)
+        RETURNING schedule_id s_id
+    )
+    INSERT INTO schedule_seat
+        SELECT
+            s_id,
+            seat_first,
+            seat_business,
+            seat_economy
+        FROM s_ids
+        CROSS JOIN flight f
+        INNER JOIN airplane a
+        ON f.airplane_id = a.airplane_id
+        WHERE flight_id = f_id
+    RETURNING schedule_id INTO inserted_s_id;
+
+    RETURN inserted_s_id ;
+END;
+$$ LANGUAGE plpgsql VOLATILE;
