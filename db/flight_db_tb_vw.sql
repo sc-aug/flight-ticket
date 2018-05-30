@@ -102,7 +102,7 @@ CREATE TABLE schedule_seat (
 
 -- seat table - ok
 CREATE TABLE available_seat (
-    schedule_id INT NOT NULL UNIQUE,
+    schedule_id INT NOT NULL,
     seat_class INT NOT NULL,
     seat_num INT NOT NULL,
     FOREIGN KEY (schedule_id) REFERENCES schedule (schedule_id),
@@ -191,31 +191,3 @@ CREATE VIEW view_schedule_info AS
     INNER JOIN location l2
     ON f.arrival_loc_id = l2.location_id;
 
-------- FUNCTION -------
-
-CREATE OR REPLACE FUNCTION fn_insert_schedule(f_id INT, dep TIMESTAMP) RETURNS INT AS $$
-DECLARE
-    inserted_s_id INT := 0 ;
-BEGIN
-
-    WITH s_ids AS (
-        INSERT INTO schedule VALUES
-            (DEFAULT, f_id, 1, dep)
-        RETURNING schedule_id s_id
-    )
-    INSERT INTO schedule_seat
-        SELECT
-            s_id,
-            seat_first,
-            seat_business,
-            seat_economy
-        FROM s_ids
-        CROSS JOIN flight f
-        INNER JOIN airplane a
-        ON f.airplane_id = a.airplane_id
-        WHERE flight_id = f_id
-    RETURNING schedule_id INTO inserted_s_id;
-
-    RETURN inserted_s_id ;
-END;
-$$ LANGUAGE plpgsql VOLATILE;
